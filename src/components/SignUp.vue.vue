@@ -35,35 +35,18 @@ export default{
              console.warn(result);
              if(result.status==200)
              {
-                alert("Details  entered successfully !")
-             }
+               
              localStorage.setItem("user-info",JSON.stringify(result.data))
+             this.$router.push({name:'Home'})
+             }
         }
+    },
+    mounted(){
+      let user=localStorage.getItem('user-info');
+      if(user)
+      {
+        this.$router.push({name:'Home'})
+      }
     }
 }
 </script>
-<style>
-.register input{
-    width :300px ;
-    height: 40px;
-    padding-left:20px;
-    display:block;
-    margin-bottom:30px;
-    margin-left:auto;
-    margin-right:auto;
-    border:1px solid black;
-
-}
-.register button{
- width :320px ;
-    height: 40px;
-    padding-left:20px;
-    display:block;
-    margin-bottom:30px;
-    margin-left:auto;
-    margin-right:auto;
-    color:black;
-    background-color:orange;
-    border:1px solid black;
-}
-</style>
