@@ -1,13 +1,13 @@
 <template>
 <Header/>
 <h1>Update Page</h1>
-<form class="update">
+<form @submit="sub" class="update" >
 <input type="text" name="name"  placeholder="Enter Name" v-model="employee.name"/>
 <input type="text" v-model="employee.email" placeholder="Enter Email"/>
 <input type="text" v-model="employee.role" placeholder="Enter Role"/>
 <input type="password" v-model="employee.password" placeholder="Enter password"/>
 
-<button type="button" v-on:click="updateEmployee">Update Emplaoyee</button>
+<button type="submit" v-on:click="updateEmployee">Update Emplaoyee</button>
 </form>
 </template>
 <script>
@@ -26,7 +26,8 @@ export default{
             email:"",
             role:"",
             password:""
-            }
+            },
+             error:[]
         }
     },   methods:{
       async  updateEmployee()
@@ -38,11 +39,44 @@ export default{
                 role:this.employee.role,
                 password:this.employee.password,
             });
-            if(result.status==200)
+            if(result.status==200 && this.error.length==0)
             {
                 this.$router.push({name:'Home'});
+                 alert("Employee updated successfully!")
             }
-        }
+        },
+         sub(e){
+            
+          this.error=[];
+         
+          if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.employee.email)))
+          {
+            this.error.push("valid email format");
+          }
+          
+           if(!this.employee.email)
+          {
+            this.error.push("Email");
+            
+          }
+           if(!this.employee.role)
+          {
+            this.error.push("Role");
+            
+          }
+          if(!this.employee.password)
+          {
+            this.error.push("Password");
+         
+          }
+       if(this.error.length!=0)
+       {
+       
+          alert("Please enter  "+this.error);
+
+       }
+          e.preventDefault();
+        },
     
     },
  

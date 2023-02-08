@@ -13,7 +13,7 @@
 <td>CREATED AT</td>
 <td>UPDATED AT</td>
 <td>ACTIONS</td>
-<td>DELETE</td>
+
 <!-- <h1>dhbsjbh</h1> -->
 </tr>
 <tr class="information" v-for="item in employees" :key="item.id">
@@ -23,8 +23,11 @@
 <td>{{item.role}}</td>
 <td>{{item.createdAt}}</td>
 <td>{{item.updatedAt}}</td>
-<td><router-link :to="'/update/'+item.id">Update</router-link></td>
-<td><button type="button" v-on:click="deleteEmployee">Delete</button></td>
+<td ><button id="updatebtn"><router-link :to="'/update/'+item.id">Update</router-link></button>
+<button id="deletebtn"><router-link :to="'/delete/'+item.id">Delete</router-link></button>
+</td>
+
+
 
 <!-- <h1>dhbsjbh</h1> -->
 </tr>
@@ -54,17 +57,20 @@ export default{
       this.employees=result.data
       console.log("api data",result);
       
-
     }
 };
 </script>
 <style>
-
 .information td{
     color:black;
     background-color:white;
 }
-.information td button{
+#deletebtn{
     background-color:red;
+    color:black;
 }
+#updatebtn{
+    background-color:#ddd;
+}
+
 </style>

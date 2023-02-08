@@ -2,6 +2,8 @@ import Home from './components/Home.vue'
 import SignUp from './components/SignUp.vue'
 import Login from './components/Login.vue'
 import Update from './components/Update.vue'
+import Delete from './components/Delete.vue'
+import Validation from './components/Validation.vue'
 import Add from './components/Add.vue'
 import { createRouter ,createWebHistory} from 'vue-router'
 
@@ -30,6 +32,18 @@ const routes=[
         name:'Update',
         component:Update,
         path:'/Update/:id'
+
+    },
+    {
+        name:'Delete',
+        component:Delete,
+        path:'/delete/:id'
+
+    },
+    {
+        name:'Validation',
+        component:Validation,
+        path:'/validation'
 
     },
     // {
